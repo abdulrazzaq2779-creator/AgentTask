@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-ink-950 text-slate-200 antialiased;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(77, 159, 255, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(167, 139, 250, 0.06), transparent);
+  min-height: 100vh;
+}
+
+.card {
+  @apply rounded-xl border border-ink-700/60 bg-ink-900/70 backdrop-blur-sm;
+}
+
+.card-hover {
+  @apply transition-all duration-200 hover:border-signal-blue/40 hover:bg-ink-850/80 cursor-pointer;
+}
+
+.chip {
+  @apply inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-mono;
+}
+
+.chip-id {
+  @apply chip bg-signal-blue/15 text-signal-blue border border-signal-blue/30;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-signal-blue to-signal-violet
+    px-5 py-2.5 font-semibold text-white shadow-lg shadow-signal-blue/25
+    transition-all duration-200 hover:shadow-signal-blue/40 hover:brightness-110
+    disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:brightness-100;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg border border-ink-700 bg-ink-850/60
+    px-4 py-2 text-sm font-medium text-slate-300 transition-colors hover:border-signal-blue/40 hover:text-white;
+}
+
+.scan-line {
+  background: linear-gradient(90deg, transparent, rgba(77, 159, 255, 0.6), transparent);
+  animation: scan 1.6s ease-in-out infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.4s ease-out both;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0d1322; }
+::-webkit-scrollbar-thumb { background: #1e2c52; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #2a3d6e; }

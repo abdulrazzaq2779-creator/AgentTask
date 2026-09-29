@@ -1,0 +1,40 @@
+{
+  "demo_incidents": [
+    {
+      "demo_number": 1,
+      "incident_id": "DEMO-201",
+      "title": "Checkout timeouts after provider slowdown",
+      "text": "On-call page at 14:05 UTC: checkout-api p99 latency jumped from 800ms to 22s and request error rate is climbing. The payment provider status page shows degraded performance in our region. Our worker utilization is pinned at 100% and the on-call notice says the service is automatically retrying failed calls. Customers cannot complete checkout. Started about 40 minutes ago, no deploy today.",
+      "expected_pattern": "retry-amplification",
+      "expected_successful_fix": "bounded retries",
+      "expected_avoid_fix": "database scaling"
+    },
+    {
+      "demo_number": 2,
+      "incident_id": "DEMO-202",
+      "title": "Duplicate charges",
+      "text": "Support escalated: several customers were charged twice for the same order over the weekend. The gateway shows two successful captures per affected order. Our logs show the checkout endpoint processed both requests normally and returned 200 for each. No timeouts, no latency, no errors. It looks like users double-clicked the pay button.",
+      "expected_pattern": "missing-idempotency",
+      "expected_successful_fix": "idempotency key",
+      "expected_avoid_fix": ""
+    },
+    {
+      "demo_number": 3,
+      "incident_id": "DEMO-203",
+      "title": "Notification queue backlog",
+      "text": "The email dispatch queue has been backing up for two hours and the delay is now 90 minutes. The email vendor is rate-limiting us (429s in the logs). Our worker requeues failed sends indefinitely, so throughput has collapsed to almost nothing.",
+      "expected_pattern": "dlq-retry-storm",
+      "expected_successful_fix": "retry cap with dead-letter queue",
+      "expected_avoid_fix": "scaling consumers"
+    },
+    {
+      "demo_number": 4,
+      "incident_id": "DEMO-204",
+      "title": "Search 500s after rollout",
+      "text": "search-api v9.2 rolled out an hour ago. Since then roughly 3% of search requests return 500. Logs show a null pointer inside the new ranking code path whenever a query has no facets. Rollback candidate.",
+      "expected_pattern": "new-pattern",
+      "expected_successful_fix": "",
+      "expected_avoid_fix": ""
+    }
+  ]
+}

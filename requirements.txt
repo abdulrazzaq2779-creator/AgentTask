@@ -1,0 +1,9 @@
+streamlit>=1.37
+openai>=1.40
+pydantic>=2.7
+python-dotenv>=1.0
+hindsight-client>=0.1.0
+rich>=13.7
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pytest>=8.0
